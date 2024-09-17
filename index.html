@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+
+</head>
+
+<body>
+  <main>
+  </main>
+  <script src="sketch.js"></script>
+  
+  <img src="Images/TempSpongeButton.PNG" alt="Description of image" class="fixed-right0">
+  <img src="Images/TempBucketButton.PNG" alt="Description of image" class="fixed-right1">
+  <img src="Images/TempDryerButton.PNG" alt="Description of image" class="fixed-right2">
+  <img src="Images/TempBrushButton.PNG" alt="Description of image" class="fixed-right3">
+  <img src="Images/TempBowButton.PNG" alt="Description of image" class="fixed-right4">
+
+  <img src="Images/TempBowButton.PNG" alt="Description of image" width="50" height="50" id="follow-mouse">
+  <script>
+    document.addEventListener('mousemove', function (e) {
+      var img = document.getElementById('follow-mouse');
+      img.style.left = e.pageX - 25 + 'px';
+      img.style.top = e.pageY - 25 + 'px';
+    });
+  </script>
+</body>
+
+</html>

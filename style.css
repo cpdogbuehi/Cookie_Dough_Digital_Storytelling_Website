@@ -1,0 +1,54 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+.fixed-right0 {
+  position: fixed;
+  width: 8%;
+  right: 0;
+  top: 10%;
+  transform: translateY(-50%);}
+
+.fixed-right1 {
+  position: fixed;
+  width: 8%;
+  right: 0;
+  top: 30%;
+  transform: translateY(-50%);
+}
+
+.fixed-right2 {
+  position: fixed;
+  width: 8%;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fixed-right3 {
+  position: fixed;
+  width: 8%;
+  right: 0;
+  top: 70%;
+  transform: translateY(-50%);
+}
+
+.fixed-right4 {
+  position: fixed;
+  width: 8%;
+  right: 0;
+  top: 90%;
+  transform: translateY(-50%);
+}
+
+#follow-mouse {
+  position: absolute;
+  pointer-events: none;
+  /* Prevents the image from interfering with mouse events */
+}
