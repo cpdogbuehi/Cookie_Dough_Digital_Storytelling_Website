@@ -13,19 +13,22 @@ let showWet = false; // show wet image
 let showDry = false; // show dry image
 let showBrushed = false; // show brushed image
 let showClean = false; // show clean image
+let showHighlight = true; // show highlight image
 
 let hoverImage; // smile image variable
 let imageX, imageY; // image position variables
 
 
 function preload() {
-    messyImage = loadImage('Images/Temp_Messy.png'); // messy image
-    soapyImage = loadImage('Images/Temp_Soapy.png'); // soapy image
-    wetImage = loadImage('Images/Temp_Wet.png'); // wet image
-    dryImage = loadImage('Images/Temp_Dry.png'); // dry image
-    brushedImage = loadImage('Images/Temp_Brushed.png'); // brushed image
-    cleanImage = loadImage('Images/Temp_Clean.png'); // clean image
-    //hoverImage = loadImage('path/to/hoverImage.png'); // Load the hover image
+    messyImage = loadImage('Images/Messy.gif'); // messy gif
+    soapyImage = loadImage('Images/Soapy.gif'); // soapy gif
+    wetImage = loadImage('Images/Wet.gif'); // wet gif
+    dryImage = loadImage('Images/Dry.gif'); // dry image
+    brushedImage = loadImage('Images/Brush.gif'); // brushed image
+    cleanImage = loadImage('Images/Clean.gif'); // clean image
+    hoverImage = loadImage('Images/HoverSmile.png'); // Load the hover image
+    highlightImage = loadImage('Images/Highlight.png'); // Load the highlight image
+    backgroundImage = loadImage('Images/Background.png'); // Load the background image
 }
 
 function setup() {
@@ -57,20 +60,21 @@ function setup() {
     let bowButton = select('.fixed-right4'); // button variable
     bowButton.mousePressed(bowPressed); // button function
 
-    //let resetButton = select('.fixed-right5'); // button variable
-    //resetButton.mousePressed(resetPressed); // button function
+    let resetButton = select('.fixed-right5'); // button variable
+    resetButton.mousePressed(resetPressed); // button function
 
 }
 
 function draw() {
     background(200, 100, 100); // background color is light blue
+    image(backgroundImage, windowWidth / 2, windowHeight / 2, windowWidth, windowHeight); // background image position and size
 
     stroke(33, 70, 30); // rectangle border color is dark brown
     strokeWeight(2); // rectangle border weight is 2
-    fill(51, 10, 100); // rectangle color is cream
+    fill(42, 26, 100); // rectangle color is cream
 
     // Resize the rectangle based on window size
-    let rectWidth = windowWidth * 0.10; // 10% of window width
+    let rectWidth = windowWidth * 0.12; // 12% of window width
     let rectHeight = windowHeight; // Full height of the window
     rect(windowWidth - rectWidth, 0, rectWidth, rectHeight); // rectangle position (behind buttons) and size
 
@@ -79,9 +83,17 @@ function draw() {
     let rectHeightTable = windowHeight * 0.3; // 30% of window height
     rect(0, windowHeight - rectHeightTable - 20, rectWidthTable, rectHeightTable + 20); // rectangle position (Panda's table) and size
 
+    let headX = windowWidth * 0.10;
+    let headY = windowHeight * 0.12;
+    let headWidth = 300;
+    let headHeight = 200;
+    stroke(0, 0, 0, 0); // fully transparent
+    fill(0, 0, 0, 0); // fully transparent
+    rect(headX, headY, headWidth, headHeight); // top area of the screen
+
     // Resize the images based on window size
-    let imageWidth = windowWidth * 0.4; // 40% of window width
-    let imageHeight = windowHeight * 0.8; // 80% of window height
+    let imageWidth = 700; // 40% of window width
+    let imageHeight = 700; // 80% of window height
 
     if (showMessy) {
         image(messyImage, imageX, imageY, imageWidth, imageHeight); // messy image position and size
@@ -107,10 +119,52 @@ function draw() {
         image(cleanImage, imageX, imageY, imageWidth, imageHeight); // clean image position and size
     }
 
-    /*if (mouseX > imageX && mouseX < imageX + imageWidth && mouseY > imageY && mouseY < imageY + imageHeight) {
+    if (mouseX >= headX && mouseX <= headX + headWidth && mouseY >= headY && mouseY <= headY + headHeight) {
         // Display the hover image
         image(hoverImage, imageX, imageY, imageWidth, imageHeight);
-    } */
+    } else {
+        // Don't display the hover image
+    }
+
+    if(showHighlight){
+        if(showMessy) {
+            highlightX = windowWidth * 0.95;
+            highlightY = windowHeight * 0.1;
+            highlightWidth = 200;
+            highlightHeight = 200;
+        }
+        if(showSoapy) {
+            highlightX = windowWidth * 0.95;
+            highlightY = windowHeight * 0.3;
+            highlightWidth = 200;
+            highlightHeight = 200;
+        }
+        if(showWet) {
+            highlightX = windowWidth * 0.95;
+            highlightY = windowHeight * 0.5;
+            highlightWidth = 200;
+            highlightHeight = 200;
+        }
+        if(showDry) {
+            highlightX = windowWidth * 0.95;
+            highlightY = windowHeight * 0.7;
+            highlightWidth = 200;
+            highlightHeight = 200;
+        }
+        if(showBrushed) {
+            highlightX = windowWidth * 0.95;
+            highlightY = windowHeight * 0.9;
+            highlightWidth = 200;
+            highlightHeight = 200;
+        }
+        if(showClean) {
+            showHighlight = false;
+        }
+    }
+
+    image(highlightImage, highlightX, highlightY, highlightWidth, highlightHeight); // highlight image position and size
+
+
 }
 
 function spongePressed() { // when sponge button is pressed
@@ -148,20 +202,15 @@ function bowPressed() { // when bow button is pressed
     }
 }
 
-/*
 function resetPressed() { // when reset button (play again) is pressed
-    if (showClean) { // if clean image is showing, show messy image, hide clean image
-        showMessy = true;
-        showClean = false;
-    }
+    // show messy image, hide all other images
+    showMessy = true;
+    showSoapy = false;
+    showWet = false;
+    showDry = false;
+    showBrushed = false;
+    showClean = false;
+    showHighlight = true;
+
 }
-    */
-
-
-
-
-
-
-
-
 
